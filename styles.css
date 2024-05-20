@@ -1,0 +1,149 @@
+/* Resetowanie domyślnych stylów */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Podstawowe style dla całej strony */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Nagłówek */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Nawigacja */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Główne style dla zawartości */
+h2 {
+    color: #333;
+}
+
+/* Formularze */
+form {
+    background-color: white;
+    padding: 2em;
+    margin: 2em auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="file"],
+form textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Odnośniki */
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Styl dla wpisów */
+div.post {
+    background-color: white;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 800px;
+}
+
+div.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+div.post h2 {
+    margin-top: 0;
+}
+
+/* Sekcja komentarzy */
+.comment-section {
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.comment {
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em 0;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-form {
+    margin-top: 1em;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 1em;
+}
