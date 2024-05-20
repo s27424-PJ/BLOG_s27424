@@ -34,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $_POST['password'];
 
-    // Pobierz przesłany plik avataru
     $avatar = $_FILES['avatar']['name'];
     $tempAvatar = $_FILES['avatar']['tmp_name'];
 
@@ -47,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result_check_user->num_rows > 0) {
             echo "Nazwa użytkownika już istnieje. Wybierz inną nazwę.";
         } else {
-            // Wczytaj obraz avataru do folderu na serwerze
             $avatarPath = "avatars/" . $username . "_" . $avatar;
             move_uploaded_file($tempAvatar, $avatarPath);
 
