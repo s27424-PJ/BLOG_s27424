@@ -61,7 +61,7 @@ $result_posts = $conn->query($sql_posts);
 
 
     <h2 style="text-align: center;"> Usuń wpis</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
         <label for="post_id">Wybierz wpis do usunięcia:</label><br>
         <select id="post_id" name="post_id">
             <?php
