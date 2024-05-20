@@ -31,7 +31,7 @@
     ?>
 
     <h2 style="text-align: center;">Dodaj nowy wpis</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
         <label for="title">Tytuł:</label><br>
         <input type="text" id="title" name="title" required><br><br>
         
