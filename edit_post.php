@@ -48,7 +48,6 @@
         $title = $_POST['title'];
         $content = $_POST['content'];
 
-        // Walidacja, czy tytuł i treść nie są puste oraz czy treść ma przynajmniej 50 znaków
         if (empty($title) || empty($content) || strlen($content) < 50) {
             echo "Tytuł nie może być pusty, a treść musi zawierać przynajmniej 50 znaków.";
             exit();
