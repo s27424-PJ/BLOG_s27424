@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = "guest";
+    $_SESSION['UserType'] = "guest"; 
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "blog";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_comment'])) {
+    $post_id = $_POST['post_id'];
+    $comment_text = $_POST['comment_text'];
+    $username = $_SESSION['username'];
+
+    $sql_insert_comment = "INSERT INTO Comments (PostID, CommentText, DateAdded, Username) VALUES ('$post_id', '$comment_text', NOW(), '$username')";
+
+    if ($conn->query($sql_insert_comment) === TRUE) {
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        echo "Błąd: " . $sql_insert_comment . "<br>" . $conn->error;
+    }
+}
+
+$sql_posts = "SELECT * FROM Posts ORDER BY DatePublished DESC";
+$result_posts = $conn->query($sql_posts);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,24 +46,21 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px; 
+            gap: 20px;
         }
-
         .post-container {
-            width: 30%; 
+            width: 30%;
             background-color: #fff;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         .comment {
             display: flex;
             align-items: center;
             margin-top: 10px;
         }
-
         .comment img {
             margin-right: 10px;
             border-radius: 50%;
@@ -44,31 +79,16 @@
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Rejestracja</a></li>
                 <li><a href="logout.php">Wyloguj</a></li>
+                <li><a href="contact.php">Kontakt</a></li>
+                <?php if ($_SESSION['UserType'] == 'autor_bloga') { ?>
+                    <li><a href="messages.php">Wiadomości</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </header>
 
+    <main>
     <?php
-    session_start();
-
-    if (!isset($_SESSION['username'])) {
-        $_SESSION['username'] = "guest";
-    }
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "blog";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql_posts = "SELECT * FROM Posts ORDER BY DatePublished DESC";
-    $result_posts = $conn->query($sql_posts);
-
     if ($result_posts->num_rows > 0) {
         echo '<div class="posts-container">';
         while ($row_post = $result_posts->fetch_assoc()) {
@@ -81,7 +101,7 @@
                 echo "<img width='200px' height='200px' src='images/" . $row_post['Image'] . "' alt='Obrazek wpisu'>";
             }
             echo "<p>Data publikacji wpisu: " . $row_post['DatePublished'] . "</p>";
-            echo "<a style='fontsize:20px;color:red;'href='full_post.php?post_id=" . $row_post['PostID'] . "'>Więcej</a>";
+            echo "<a style='font-size:20px;color:red;' href='full_post.php?post_id=" . $row_post['PostID'] . "'>Więcej</a>";
             $post_id = $row_post['PostID'];
             $sql_comments = "SELECT Comments.*, Users.Avatar FROM Comments INNER JOIN Users ON Comments.Username = Users.Username WHERE Comments.PostID = $post_id ORDER BY Comments.DateAdded DESC";
             $result_comments = $conn->query($sql_comments);
@@ -104,22 +124,6 @@
                     <textarea name='comment_text' required></textarea><br>
                     <input type='submit' name='add_comment' value='Dodaj komentarz'>
                   </form>";
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_comment'])) {
-                $post_id = $_POST['post_id'];
-                $comment_text = $_POST['comment_text'];
-                $username = $_SESSION['username'];
-
-                $sql_insert_comment = "INSERT INTO Comments (PostID, CommentText, DateAdded, Username) VALUES ('$post_id', '$comment_text', NOW(), '$username')";
-
-                if ($conn->query($sql_insert_comment) === TRUE) {
-                    header('Location: ' . $_SERVER['PHP_SELF']);
-                    exit;
-                } else {
-                    echo "Błąd: " . $sql_insert_comment . "<br>" . $conn->error;
-                }
-            }
-
             echo "</div>";
         }
         echo "</div>";
@@ -129,5 +133,6 @@
 
     $conn->close();
     ?>
+    </main>
 </body>
 </html>

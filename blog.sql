@@ -77,6 +77,13 @@ INSERT INTO `posts` (`PostID`, `Title`, `Content`, `Image`, `DatePublished`, `Us
 (35, 'Test3', 'Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3Test3', '3.jpg', '2024-05-20 13:35:58', 5);
 
 -- --------------------------------------------------------
+CREATE TABLE Contact (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Message TEXT NOT NULL,
+    DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 --
 -- Struktura tabeli dla tabeli `users`
@@ -98,7 +105,7 @@ INSERT INTO `users` (`UserID`, `Username`, `Password`, `Avatar`, `UserType`) VAL
 (4, 'author_user', '$2y$10$wEZ5Uw6TbID7R9mfpNjy/uKx4uV55kKHa26ktx7CWrKkrY8VrZmD.', 'avatars/2.jpg', 'autor_bloga'),
 (5, 'admin', '$2y$10$wEZ5Uw6TbID7R9mfpNjy/uKx4uV55kKHa26ktx7CWrKkrY8VrZmD.', 'avatars/1.jpg', 'administrator'),
 (14, 'arek', '$2y$10$TnH2FU7kw5RPqnPftcvSH.6FzG/VdCTnvPu3VVld8kXGbq0Nuv31.', 'avatars/arek_1.jpg', 'użytkownik');
-
+INSERT INTO `users` (`UserID`, `Username`, `Password`, `Avatar`, `UserType`) VALUES ('', 'guest', '', NULL, 'guest');
 --
 -- Indeksy dla zrzutów tabel
 --

@@ -16,6 +16,7 @@
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Rejestracja</a></li>
                 <li><a href="logout.php">Wyloguj</a></li>
+                <li><a href="contact.php">Kontakt</a></li>
             </ul>
         </nav>
         <div class="user-info" style="position: absolute; top: 10px; right: 10px;">
