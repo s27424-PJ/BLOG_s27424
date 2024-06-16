@@ -83,8 +83,6 @@ $conn->close();
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Zaloguj">
     </form>
-    <div style="text-align: center; font-size:24px">
-        <a href="password_change.php">Zmień hasło</a>
-    </div>
+  
 </body>
 </html>
